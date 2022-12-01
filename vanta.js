@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', () => {
+/*window.addEventListener('DOMContentLoaded', () => {
     VANTA.FOG({
     el: '#vanta',
     
@@ -19,21 +19,54 @@ quantity:1.00,
 cohesion:5.0,
 
     })
- })
+ })*/
+
+ /*array de musicas*/
 
 let musicas=[
     {Titulo:'Dear Are You Getting Sober', artista:'Merami Pop', 
-    src:'music/dear_are_you_getting_sober', img:'images/fge.jpeg' }
+    src:'music/dear_are_you_getting_sober.mp3', img:'images/fge.jpeg'
+ },
+
+ {Titulo:'From Under Cover ', artista:'Merami Pop', 
+ src:'music/from_under_cover.mp3', img:'images/fge.jpeg' },
+
+ {Titulo:'Four Seasons of Loneliness ', artista:'Tatsh', 
+ src:'music/four_seasons.mp3', img:'images/tatsh.jpg' }
 ]
+
+
 let musica = document.querySelector('audio');
-let imagem = document.querySelector('img');
+let imagem = document.querySelector('.album');
+
+let indexMusica = 0;
 
 document.querySelector('.botao-play').addEventListener('click', tocar_musica);
 document.querySelector('.botao-pause').addEventListener('click', pausar_musica);
-document.querySelector('.proximo').addEventListener('click', rendermusic);
-document.querySelector('.voltar').addEventListener('click', rendermusic);
+document.querySelector('.anterior').addEventListener('click',()=>{
+
+    while (indexMusica == 0 ) {
+        rendermusic(indexMusica);
+        indexMusica --;
+        
+    }
+      
+        
+    
+    
+    
+});
+document.querySelector('.proximo').addEventListener('click', ()=>{
+    while (indexMusica > 0) {
+        Rendermusic(indexMusica);
+        indexMusica ++; 
+    }
+    
+
+});
  
 musica.addEventListener('timeupdate',att_barra)
+
  
 let tempo_final = document.querySelector('.fim');
 tempo_final.textContent = muda_segundos(Math.floor(musica.duration))
@@ -42,9 +75,19 @@ let nomeMusica = document.querySelector('.descript h2');
 let nomeArtista = document.querySelector('.descript i');
 
 
+function rendermusic(index){
 
+    musica.setAttribute('src', musicas[index].src)
+    musica.addEventListener('loadeddata', ()=>{
 
-function rendermusic(index){}
+        nomeMusica.textContent = musicas[index].Titulo
+        nomeArtista.textContent = musicas[index].artista
+        imagem.src = musicas[index].img
+        tempo_decorrido.textContent = muda_segundos(Math.floor(musica.currentTime));
+        
+    });
+
+}
 
  function tocar_musica()
  {
