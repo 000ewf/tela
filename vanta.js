@@ -40,29 +40,20 @@ let musica = document.querySelector('audio');
 let imagem = document.querySelector('.album');
 
 let indexMusica = 0;
+let novo;
 
 document.querySelector('.botao-play').addEventListener('click', tocar_musica);
 document.querySelector('.botao-pause').addEventListener('click', pausar_musica);
 document.querySelector('.anterior').addEventListener('click',()=>{
 
-    while (indexMusica == 0 ) {
         rendermusic(indexMusica);
         indexMusica --;
-        
-    }
       
-        
-    
-    
-    
 });
 document.querySelector('.proximo').addEventListener('click', ()=>{
-    while (indexMusica > 0) {
+    
         Rendermusic(indexMusica);
         indexMusica ++; 
-    }
-    
-
 });
  
 musica.addEventListener('timeupdate',att_barra)
